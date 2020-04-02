@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Router } from 'react-router-dom'
+import { CssBaseline } from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
 
-function App() {
+import { history } from './history'
+import { menuConf } from './menuConf'
+import AppRouter from './AppRouter'
+import { TopBar } from './components/layout/TopBar'
+import { Menu } from './components/layout/Menu'
+
+const useStyles = makeStyles(theme => ({
+  toolbar: theme.mixins && theme.mixins.toolbar,
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing && theme.spacing(3)
+  }
+}))
+
+const App = () => {
+  const [mobileOpen, setMobileOpen] = React.useState(false)
+
+  const classes = useStyles()
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router history={history}>
+      <CssBaseline />
+      <TopBar mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} />
+      <Menu mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} items={menuConf} />
+      <main className={classes.content}>
+        <div className={classes.toolbar} />
+        <AppRouter />
+      </main>
+    </Router>
+  )
 }
 
-export default App;
+export default App
