@@ -1,0 +1,13 @@
+version: '3.3'
+services:
+  react-app:
+    container_name: dashboard
+    build:
+      context: .
+      dockerfile: dockerfile
+    volumes:
+      - './:/usr/src/app'
+    environment:
+      - PORT=4000
+    ports:
+      - '4000:4000'
