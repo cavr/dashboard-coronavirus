@@ -6,7 +6,7 @@ const app = express();
 
 app.use('/', express.static(path.join(__dirname, '../build')));
 
-const backendURL = process.env.REACT_APP_BACKEND_HOST;
+const backendURL = 'https://corona.lmao.ninja/countries';
 
 const options = {
   target: backendURL, // target host
