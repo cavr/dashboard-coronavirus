@@ -7,7 +7,7 @@ import api from '../../api/api.config';
 
   useEffect(() => {
     const retrieveData = async () => {
-      const result = await api.get();
+      const result = await api.get('');
 
       result && result.data && setData(result.data);
     };

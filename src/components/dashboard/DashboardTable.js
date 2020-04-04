@@ -8,11 +8,18 @@ import DateTypeProvider from './DateTypeProvider';
 import { tableLocales } from '../../i18n/es';
 import { useTranslation } from 'react-i18next';
 
-const Table = ({ data, columns }) => {
-  const { i18n } = useTranslation();
+const columns = ['countryInfo',
+  'country', 'cases', 'todayCases',
+  'deaths', 'todayDeaths', 'recovered',
+  'deathsPerOneMillion', 'updated'];
+
+const Table = ({ data, tableColumns }) => {
+  const { t } = useTranslation();
+
+  const columnsWithTitle = tableColumns.map(column => ({ name: column, title: t(column) }));
 
   const giveMeTranslations = (arr) => {
-    return arr.reduce((accum, item) => ({ ...accum, [item]: i18n.t(item) }), {});
+    return arr.reduce((accum, item) => ({ ...accum, [item]: t(item) }), {});
   };
 
   const getRowId = (row) => row.countryInfo._id;
@@ -21,10 +28,10 @@ const Table = ({ data, columns }) => {
     return { ...accum, [key]: giveMeTranslations(tableLocales[key]) };
   }, {});
 
-  return <Grid rows={data} columns={columns} getRowId={getRowId}>
+  return <Grid rows={data} columns={columnsWithTitle} getRowId={getRowId}>
     <CountryTypeProvider for={['countryInfo']} />
     <DateTypeProvider for={['updated']} />
-    <SortingState defaultSorting={[{ columnName: 'city', direction: 'asc' }]} />
+    <SortingState />
     <SearchState />
     <IntegratedSorting />
     <IntegratedFiltering/>
@@ -35,9 +42,13 @@ const Table = ({ data, columns }) => {
   </Grid>;
 };
 
+Table.defaultProps = {
+  tableColumns: columns
+};
+
 Table.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({})),
-  columns: PropTypes.arrayOf(PropTypes.shape({}))
+  tableColumns: PropTypes.arrayOf(PropTypes.shape({}))
 
 };
 
