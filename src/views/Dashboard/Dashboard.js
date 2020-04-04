@@ -7,7 +7,7 @@ import useDashboard from './useDashboard';
 
 const useStyles = makeStyles({
   root: {
-    width: '800px'
+    width: '100%',
   },
   tableWrapper: {
     maxHeight: 440,

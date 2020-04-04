@@ -1,6 +1,6 @@
 const es = {
   translation: {
-    countryInfo: '',
+    countryInfo: 'Bandera',
     country: 'País',
     cases: 'Casos',
     todayCases: 'Casos de hoy',

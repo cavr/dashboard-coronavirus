@@ -5,7 +5,7 @@ import CountryFormatter from './CountryFormatter';
 
 const CountryTypeProvider = props => (
   <DataTypeProvider
-    formatterComponent={CountryFormatter}
+      formatterComponent={CountryFormatter}
     {...props}
   />
 );

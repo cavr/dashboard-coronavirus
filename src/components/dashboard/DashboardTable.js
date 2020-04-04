@@ -7,6 +7,7 @@ import CountryTypeProvider from './CountryTypeProvider';
 import DateTypeProvider from './DateTypeProvider';
 import { tableLocales } from '../../i18n/es';
 import { useTranslation } from 'react-i18next';
+import NumberTypeProvider from './NumberTypeProvider';
 
 const columns = ['countryInfo',
   'country', 'cases', 'todayCases',
@@ -31,6 +32,9 @@ const Table = ({ data, tableColumns }) => {
   return <Grid rows={data} columns={columnsWithTitle} getRowId={getRowId}>
     <CountryTypeProvider for={['countryInfo']} />
     <DateTypeProvider for={['updated']} />
+    <NumberTypeProvider for={['cases', 'todayCases',
+      'deaths', 'todayDeaths', 'recovered',
+      'deathsPerOneMillion']}/>
     <SortingState />
     <SearchState />
     <IntegratedSorting />
