@@ -1,10 +1,9 @@
-FROM node:12 as buid
+FROM node:12 as build-deps
 WORKDIR /usr/src/app
 COPY package.json ./
 COPY . ./
 RUN yarn run install
 RUN yarn run build
-RUN rm -rf ./node_modules
 
 EXPOSE 4000
 
