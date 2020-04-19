@@ -6,15 +6,17 @@ const app = express();
 
 app.use('/', express.static(path.join(__dirname, '../build')));
 
-const backendURL = 'https://corona.lmao.ninja/countries';
+const backendURL = 'https://corona.lmao.ninja/v2/countries?sort=cases';
 
 const options = {
   target: backendURL, // target host
   pathRewrite: {
-    '^/api': '/'
+    '^/api': ''
   },
   changeOrigin: true
 };
+
+console.log(backendURL);
 
 const customProxy = createProxyMiddleware(options);
 

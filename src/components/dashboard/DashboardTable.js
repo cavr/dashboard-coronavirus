@@ -35,7 +35,7 @@ const Table = ({ data, tableColumns }) => {
     <NumberTypeProvider for={['cases', 'todayCases',
       'deaths', 'todayDeaths', 'recovered',
       'deathsPerOneMillion']}/>
-    <SortingState />
+    <SortingState defaultSorting={[{ columnName: 'cases', direction: 'desc' }]}/>
     <SearchState />
     <IntegratedSorting />
     <IntegratedFiltering/>

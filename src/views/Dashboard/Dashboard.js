@@ -8,6 +8,7 @@ import useDashboard from './useDashboard';
 const useStyles = makeStyles({
   root: {
     width: '100%',
+    height: '80vh'
   },
   tableWrapper: {
     maxHeight: 440,
@@ -20,7 +21,7 @@ const Dashboard = () => {
 
   const { countries } = useDashboard();
 
-  return <Paper  className={classes.root}>
+  return <Paper className={classes.root}>
     <DashboardTable data={countries} />
   </Paper>;
 };
